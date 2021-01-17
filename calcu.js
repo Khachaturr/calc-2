@@ -14,17 +14,29 @@ function output (nam1, nam2) {
   currentCalculationOutput.textContent=nam2;
 }
 
+//function for complete operators
+
+function allOperator(operator, resultBefor, calcNumber){
+ const calcDescription=`${resultBefor} ${operator} ${calcNumber}`;
+  output(calcDescription, calculation)
+}
+
+//function for  user input value
+function getUserInput (){
+  return Number(userInput.value);
+}
+
 //function for add
 
 const result=0;
 let calculation=result;
 
-function add() {
  
-    const calcDescription=`${calculation}+${userInput.value}`;
-  
-    calculation=calculation + Number(userInput.value);
-  output(calcDescription, calculation);
+function add() {
+  let inputNumber=getUserInput();
+ const calcbefor=calculation;
+ calculation=calculation + inputNumber;
+ allOperator("+",calcbefor, inputNumber)
 }
 
 addBtn.addEventListener("click", add);
@@ -33,16 +45,20 @@ addBtn.addEventListener("click", add);
 
 
 function subtract(){
-  
+  const inputNumber = getUserInput ();
+
   if(calculation==0){
-    var calcDescription=`${userInput.value}`;
-    calculation=Number(userInput.value- calculation);
+    
+    var calcDescription=`${inputNumber}`;
+    calculation=inputNumber- calculation;
+    output(calcDescription, calculation)
   }
-  else{
-    var calcDescription=`${calculation}-${userInput.value}`;
-  calculation=calculation-Number(userInput.value);}
+  else {
+ const calcbefor=calculation;
+ calculation=calculation - inputNumber;
+ allOperator("-",calcbefor, inputNumber);
  
-output(calcDescription, calculation);
+}
 }
 
 subtractBtn.addEventListener("click", subtract);
@@ -52,35 +68,36 @@ subtractBtn.addEventListener("click", subtract);
 
 
 function multiply() {
+  const inputNumber = getUserInput ();
   if(calculation==0){
- var calcDescription=`${userInput.value}`;
- calculation=Number(userInput.value);
+ var calcDescription=`${inputNumber}`;
+ calculation=inputNumber;
+ output(calcDescription, calculation)
   }
   else{
-    var calcDescription=`${calculation}*${userInput.value}`;
-  calculation=calculation * Number(userInput.value);}
-  output(calcDescription, calculation);
+const calcbefor=calculation;
+ calculation=calculation * inputNumber;
+ allOperator("*",calcbefor, inputNumber);
 }
-
+}
 multiplyBtn.addEventListener("click", multiply);
 
 //function for divide
 
-
-
 function divide(){
-  
+  const inputNumber = getUserInput ();
   if(calculation==0){
-    var calcDescription=`${userInput.value}`;
-    calculation=Number(userInput.value);
+    var calcDescription=`${inputNumber}`;
+    calculation=inputNumber;
+    output(calcDescription, calculation)
     
   }
   else{
-    var calcDescription=`${calculation}/${userInput.value}`;
-    calculation=calculation/Number(userInput.value);
-    
+    const calcbefor=calculation;
+ calculation=calculation / inputNumber;
+ allOperator("/",calcbefor, inputNumber);
   }
-  output(calcDescription, calculation);
+  
 }
 
 divideBtn.addEventListener("click", divide);
